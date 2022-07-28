@@ -1,10 +1,10 @@
 import React from "react";
-import {Menu, Container, Icon} from "semantic-ui-react"
-import {userRouter} from "next/router"
-import Link from "next/link"
+import {Menu, Container, Icon} from "semantic-ui-react";
+import {useRouter} from "next/router";
+import Link from "next/link";
 
 function Navbar() {
-  const router = userRouter();
+  const router = useRouter();
 
   const isActive = route => router.pathname===router;
 

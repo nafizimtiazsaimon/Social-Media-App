@@ -13,6 +13,7 @@ nextApp.prepare().then(() => {
     app.all('*', (req,res) => handle(req, res));
     server.listen(PORT, err =>{
         if (err) throw err;
-        console.log(`Express server running on ${PORT}`);
+        //console.log(`Express server running on ${PORT}`);
     });
 });
+//npm run dev

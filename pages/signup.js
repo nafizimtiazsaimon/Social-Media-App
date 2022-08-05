@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import {Form, Button, Message, Segment, TextArea, Divider} from "semantic-ui-react"
 import { HeaderMessage, FooterMessage} from "../components/Common/WelcomeMessage";
 
 function Signup() {
-  const [user, setUser] = userState({
+  const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
@@ -16,8 +16,13 @@ function Signup() {
   })
 
   return (
-    <div>Signup</div>
+    <>
+      <HeaderMessage />
+
+      <FooterMessage />
+    </>
   )
 }
+  
 
-export default S
+export default Signup;

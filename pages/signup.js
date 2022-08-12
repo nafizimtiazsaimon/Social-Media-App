@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import CommonInputs from "../components/Common/CommonInputs";
 import {
   Form,
   Button,
@@ -117,6 +118,12 @@ function Signup() {
             fluid
             icon={usernameAvailable ? "check" : "close"}
             iconPosition="left"
+          />
+          <CommonInputs
+            user={user}
+            showSocialLinks={showSocialLinks}
+            setShowSocialLinks={setShowSocialLinks}
+            handleChange={handleChange}
           />
         </Segment>
       </Form>

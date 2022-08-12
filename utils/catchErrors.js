@@ -6,17 +6,17 @@ const catchErrors = (error, displayError) => {
 
     errorMsg = error.response.data;
 
-    console.error(errorMsg);
+    //console.error(errorMsg);
   } else if (error.request) {
     // if the request was made and no response was recevied from server
     errorMsg = error.request;
 
-    console.error(errorMsg);
+    //console.error(errorMsg);
   } else {
     // if something else happened while making the request
     errorMsg = error.message;
 
-    console.error(errorMsg);
+    //console.error(errorMsg);
   }
   displayError(errorMsg);
 };

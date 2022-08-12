@@ -10,7 +10,7 @@ async function connectDb() {
     });
     console.log("Mongodb connected");
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     process.exit(1);
   }
 }

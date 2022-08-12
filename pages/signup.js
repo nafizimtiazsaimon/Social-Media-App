@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import CommonInputs from "../components/Common/CommonInputs";
+import ImageDropDiv from "../components/Common/ImageDropDiv";
 import {
   Form,
   Button,
@@ -30,7 +31,13 @@ function Signup() {
   const { name, email, password, bio } = user;
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
+
+    if (name === "media") {
+      setMedia(files[0]);
+      setMediaPreview(URL.createObjectURL(files[0]));
+    }
+
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -38,19 +45,32 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [formLoading, setFormLoading] = useState(false);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
   const [username, setUsername] = useState("");
   const [uesrnameLoading, setUsernameLoading] = useState(false);
   const [usernameAvailable, setUsernameAvailable] = useState(false);
 
+  const [media, setMedia] = useState(null);
+  const [mediaPreview, setMediaPreview] = useState(null);
+  const [highlighted, setHighlighted] = useState(false);
+  const inputRef = useRef();
+
   const handleSubmit = (e) => e.preventDefault();
+
+  useEffect(() => {
+    const isUser = Object.values({ name, email, password, bio }).every((item) =>
+      Boolean(item)
+    );
+    isUser ? setSubmitDisabled(false) : setSubmitDisabled(true);
+  }, [user]);
 
   return (
     <>
       <HeaderMessage />
       <Form
         loading={formLoading}
-        error={errorMsg !== null}
+        error={errorMsg == null}
         onSubmit={handleSubmit}
       >
         <Message
@@ -60,6 +80,15 @@ function Signup() {
           onDismiss={() => setErrorMsg(null)}
         />
         <Segment>
+          <ImageDropDiv
+            mediaPreview={mediaPreview}
+            setMediaPreview={setMediaPreview}
+            setMedia={setMedia}
+            inputRef={inputRef}
+            highlighted={highlighted}
+            setHighlighted={setHighlighted}
+            handleChange={handleChange}
+          />
           <Form.Input
             required
             label="Name"
@@ -124,6 +153,14 @@ function Signup() {
             showSocialLinks={showSocialLinks}
             setShowSocialLinks={setShowSocialLinks}
             handleChange={handleChange}
+          />
+          <Divider hidden />
+          <Button
+            icon="signup"
+            content="Signup"
+            type="submit"
+            color="orange"
+            disabled={submitDisabled || !usernameAvailable}
           />
         </Segment>
       </Form>

@@ -1,7 +1,10 @@
-import React from 'react';
+import React from "react";
 import baseUrl from "../utils/baseUrl";
 import axios from "axios";
-import {HeaderMessage, FooterMessage} from "../components/Common/WelcomeMessage";
+import {
+  HeaderMessage,
+  FooterMessage,
+} from "../components/Common/WelcomeMessage";
 
 function Login() {
   return (

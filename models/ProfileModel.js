@@ -11,8 +11,8 @@ const ProfileSchema = new Schema(
       facebook: { type: String },
       twitter: { type: String },
       youtube: { type: String },
-      instagram: { type: String },
-    },
+      instagram: { type: String }
+    }
   },
   { timestamps: true }
 );
